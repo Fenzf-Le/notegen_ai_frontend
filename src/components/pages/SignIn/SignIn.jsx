@@ -161,20 +161,20 @@ export default function SignIn({ setAuthenticated, setUser, toggleSignUp }) {
           Don't have an account? <span onClick={() => toggleSignUp()}>Sign up</span>
         </p>
 
-        <div className="startPage-user-warning" style={{marginTop: "10px"}}>
-          <p>⚠️ Your token will expire <strong>24h</strong> after sign in. <br />
-            If the page isn't working, just sign in again. Thanks! 🤗</p>
-        </div>
-
-
-        {/* <Divider sx={{ width: "50%", color: "rgba(0, 0, 0, 0.6)" }}>or</Divider>
+         <Divider sx={{ width: "50%", color: "rgba(0, 0, 0, 0.6)" }}>or</Divider>
 
         <div className="signin-options">
           <button onClick={handleGoogleSignIn} className="signin-button" disabled={loading}>
             {loading ? <CircularProgress size={20} color="inherit" /> : <img src={GoogleIcon} alt="Google Icon" className="signin-google-icon" />}
             {loading ? "Signing in..." : "Continue with Google"}
           </button>
-        </div> */}
+        </div> 
+
+        <div className="startPage-user-warning" style={{marginTop: "20px"}}>
+          <p>⚠️ Your token will expire <strong>24h</strong> after sign in. <br />
+            If the page isn't working, just sign in again. Thanks! 🤗</p>
+        </div>
+
       </div>
     </div>
   );

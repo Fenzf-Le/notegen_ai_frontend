@@ -189,4 +189,10 @@
     /* Vô hiệu bôi đen chọn văn bản */
   }
 
-  
+  @media (max-width: 768px) {
+    .new-signin-button{
+      width: 50%;
+      font-size: 0.9rem;
+      padding: 0.6rem 0.8rem ;
+    }
+  }
