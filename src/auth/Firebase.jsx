@@ -1,13 +1,20 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 
+const API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
+const AUTH_DOMAIN = import.meta.env.VITE_FIREBASE_AUTH_DOMAIN;
+const PROJECT_ID = import.meta.env.VITE_FIREBASE_PROJECT_ID;
+const STORAGE_BUCKET = import.meta.env.VITE_FIREBASE_STORAGE_BUCKET;
+const MESSAGE_SENDER_ID = import.meta.env.VITE_FIREBASE_MESSAGE_SENDER_ID;
+const APP_ID = import.meta.env.VITE_FIREBASE_APP_ID;
+
 const firebaseConfig = {
-    apiKey: "AIzaSyDNmjzPX-VXX0L8_BcsBBniDUaQ0Kes0LA",
-    authDomain: "notegen-ai.firebaseapp.com",
-    projectId: "notegen-ai",
-    storageBucket: "notegen-ai.firebasestorage.app",
-    messagingSenderId: "264220971199",
-    appId: "1:264220971199:web:f472d417bd03c86a39b60a",
+    apiKey: API_KEY,
+    authDomain: AUTH_DOMAIN,
+    projectId: PROJECT_ID,
+    storageBucket: STORAGE_BUCKET,
+    messagingSenderId: MESSAGE_SENDER_ID,
+    appId: APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
