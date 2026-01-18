@@ -8,14 +8,15 @@ import {
   TextField,
   Grid,
   Typography,
-  IconButton,
   CircularProgress,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import './DBoardModals.css'
 import { useNavigate } from "react-router-dom";
 import { retrieveStorage, createFolder, createFileWithFolder } from '../../../server/api';
-// Import folder data
+// Import assets
+import AddToFolder from '../../../assets/Icon_fill/NoteGallery.svg';
+import SkipForNow from '../../../assets/Icon_fill/SkipForNow.svg';
 import Folder from '../../../assets/Icon_fill/Folder.svg';
 import AddNewFolder from '../../../assets/Icon_line/AddNewFolder.svg';
 
@@ -148,7 +149,14 @@ export default function DBoardModals({ openMD, onClose, onNavigateToCanvas }) {
   return (
     <>
       {/* Select Folder Modal */}
-      <Dialog open={openMD && currentModal === "select"} onClose={handleClose}>
+      <Dialog open={openMD && currentModal === "select"} onClose={handleClose}
+        PaperProps={{
+          sx: {
+            borderRadius: '26px !important',
+            padding: '12px',
+          },
+        }}
+      >
         <DialogTitle
           sx={{
             p: 0, // Remove default padding
@@ -156,19 +164,19 @@ export default function DBoardModals({ openMD, onClose, onNavigateToCanvas }) {
             alignItems: "center",
             justifyContent: "center",
             position: "relative",
-            height: 70, // You can adjust this as needed
+            height: 70,
           }}>
           <div className="DBodals-dialog-title">
             Select folder
           </div>
           {/* Close "X" Button */}
-          <IconButton
+          {/* <IconButton
             aria-label="close"
             onClick={handleClose}
             sx={{ position: "absolute", right: 8, top: 8 }}
           >
             <CloseIcon />
-          </IconButton>
+          </IconButton> */}
         </DialogTitle>
         <DialogContent>
           <Typography sx={{ fontSize: '13px', textAlign: 'center', color: '#2F2F2F' }}>
@@ -177,31 +185,59 @@ export default function DBoardModals({ openMD, onClose, onNavigateToCanvas }) {
           <Grid container spacing={2} justifyContent="center" marginTop={1.5} marginBottom={0.5}>
             <Grid item>
               <Button
-                sx={{ borderRadius: '12px' }}
                 variant="outlined"
                 onClick={handleAddToFolder}
-                startIcon={<span role="img" aria-label="folder">📁</span>}
+                className="gradientOutlinedButton"
+                sx={{
+                  width: 170,
+                  borderRadius: '16px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  gap: '6px',
+                  py: 1.2,
+                  textTransform: 'none',
+                  color: 'var(--dark-5)',
+                }}
               >
-                Add to folder
+                <img
+                  src={AddToFolder}
+                  alt="folder"
+                  className="DBodals-addToFolder-icon"
+                />
+                <span>Add to folder</span>
               </Button>
             </Grid>
             <Grid item>
               <Button
-                sx={{
-                  borderRadius: '12px',
-                  minWidth: 170, // Ensures consistent width
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
                 variant="outlined"
                 onClick={handleSkip}
-                // startIcon={<span role="img" aria-label="skip">⏭️</span>}
-                // startIcon={loadingCreateFile ? "" : <span role="img" aria-label="skip">⏭️</span>}
-                startIcon={!loadingCreateFile && <span role="img" aria-label="skip">⏭️</span>}
                 disabled={loadingCreateFile}
+                className="gradientOutlinedButton"
+                sx={{
+                  width: 170,
+                  borderRadius: '16px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  gap: '6px',
+                  py: 1.2,
+                  textTransform: 'none',
+                  color: 'var(--dark-5)',
+                }}
               >
-                {loadingCreateFile ? <CircularProgress size={30} /> : "Skip for now"}
+                {loadingCreateFile ? (
+                  <CircularProgress size={30} />
+                ) : (
+                  <>
+                    <img
+                      src={SkipForNow}
+                      alt="skip"
+                      className="DBodals-skipForNow-icon"
+                    />
+                    <span>Skip for now</span>
+                  </>
+                )}
               </Button>
             </Grid>
           </Grid>
@@ -210,7 +246,15 @@ export default function DBoardModals({ openMD, onClose, onNavigateToCanvas }) {
 
 
       {/* Choose a Folder Modal */}
-      <Dialog open={currentModal === "choose"} onClose={() => setCurrentModal("select")}>
+      <Dialog open={currentModal === "choose"} onClose={() => setCurrentModal("select")}
+        PaperProps={{
+          sx: {
+            borderRadius: '26px !important',
+            padding: '0 25px',
+            minWidth: '360px',
+          },
+        }}
+      >
         <DialogTitle
           sx={{
             p: 0, // Remove default padding
@@ -218,40 +262,41 @@ export default function DBoardModals({ openMD, onClose, onNavigateToCanvas }) {
             alignItems: "center",
             justifyContent: "center",
             position: "relative",
-            height: 70, // You can adjust this as needed
+            height: 70,
           }}>
           <div className="DBodals-dialog-title">
             Choose a folder
           </div>
           {/* Close "X" Button */}
-          <IconButton
+          {/* <IconButton
             aria-label="close"
             onClick={handleOpen}
             sx={{ position: "absolute", right: 8, top: 8 }}
           >
             <CloseIcon />
-          </IconButton>
+          </IconButton> */}
         </DialogTitle>
-        {/* <DialogTitle sx={{ textAlign: "center" }}>Choose a folder</DialogTitle> */}
         <Typography sx={{ fontSize: '12px', textAlign: 'center', color: '#2F2F2F' }}>
           Success is not final, failure is not fatal: it is the <br /> courage to continue that counts.
         </Typography>
         <Button
           variant="contained"
+          onClick={handleAddNewFolder}
           sx={{
-            width: '75%',
+            // width: '75%',
             display: 'flex',
-            gap: 1,
+            flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
+            px: 3,
             mx: 'auto',   // Center horizontally
             my: 1.5,     // Vertical spacing (optional)
-            borderRadius: '10px',
-            color: '#3372FF',  // --primary-6
-            background: '#98deff', // --primary-2
+            borderRadius: '16px',
+            color: 'var(--primary-6)',
+            background: 'var(--primary-1)',
+            textTransform: 'none',
+            fontWeight: '600',
           }}
-          // color="primary"
-          onClick={handleAddNewFolder}
         >
           <img src={AddNewFolder} alt="AddNewFolder Icon" className="DBodals-addNewFolder-icon" />
           Add new folder
@@ -289,6 +334,7 @@ export default function DBoardModals({ openMD, onClose, onNavigateToCanvas }) {
           sx: {
             width: '400px',        // or '60%', '40vw', etc.
             maxWidth: '90%',       // optional: responsive limit
+            borderRadius: '26px !important',
           },
         }}>
         <DialogTitle
@@ -298,29 +344,31 @@ export default function DBoardModals({ openMD, onClose, onNavigateToCanvas }) {
             alignItems: "center",
             justifyContent: "center",
             position: "relative",
-            height: 70, // You can adjust this as needed
+            height: 70,
           }}>
           <div className="DBodals-dialog-title">
             New folder name
           </div>
           {/* Close "X" Button */}
-          <IconButton
+          {/* <IconButton
             aria-label="close"
             onClick={handleAddToFolder}
             sx={{ position: "absolute", right: 8, top: 8 }}
           >
             <CloseIcon />
-          </IconButton>
+          </IconButton> */}
         </DialogTitle>
-        {/* <DialogTitle>New folder name</DialogTitle> */}
         <DialogContent sx={{ py: 0, }}>
           <Typography sx={{ fontSize: '12px', textAlign: 'center', color: '#2F2F2F' }}>
             Big ideas start small. Name it wisely.
           </Typography>
           <TextField
             fullWidth
-            sx={{
-              mt: 1.5, mb: 2,
+            sx={{ mt: 1.5, mb: 2, }}
+            InputProps={{
+              sx: {
+                borderRadius: '12px', // Apply to the input container
+              },
             }}
             label="Folder Name"
             value={newFolderName}

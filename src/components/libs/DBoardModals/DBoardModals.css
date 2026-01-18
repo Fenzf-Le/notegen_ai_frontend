@@ -5,17 +5,60 @@
     font-weight: bold;
     font-family: -apple-system, BlinkMacSystemFont, "San Francisco Pro", sans-serif;
     background: linear-gradient(#25C1B3, #3372FF);
-      background-clip: text;  /* Standard property for compatibility */
-      -moz-background-clip: text; /* Firefox */
-      -ms-background-clip: text; /* Internet Explorer */
-      -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* Standard property for compatibility */
+    -moz-background-clip: text;
+    /* Firefox */
+    -ms-background-clip: text;
+    /* Internet Explorer */
+    -webkit-text-fill-color: transparent;
   }
-  
-  .DBodals-addNewFolder-icon{
-    width: 1.3rem;
-    /* --primary-6: #3372FF  */
+
+  .DBodals-addToFolder-icon {
+    width: 1.15rem;
+    height: 1.15rem;
+    filter: invert(39%) sepia(100%) saturate(500%) hue-rotate(170deg);
+    padding: 0.3rem;
+    background-color: rgba(186, 224, 255, 0.247);
+    border-radius: 8px;
+    box-sizing: content-box;
+    /* Ensure padding does not shrink the icon size */
+    display: inline-block;
+  }
+
+  .DBodals-skipForNow-icon {
+    width: 1.15rem;
+    height: 1.15rem;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(62%) saturate(871%) hue-rotate(138deg) brightness(79%) contrast(94%);
+    padding: 0.3rem;
+    background-color: #13161538;
+    border-radius: 8px;
+    box-sizing: content-box;
+    /* Ensure padding does not shrink the icon size */
+    display: inline-block;
+  }
+
+  .gradientOutlinedButton {
+    border: 1px solid var(--light-4) !important;
+    transition: all 0.25s ease-in-out;
+  }
+
+  /* Hover state */
+  .gradientOutlinedButton:hover {
+    border: 1px solid transparent !important;
+    background:
+      linear-gradient(#ffffff, #ffffff) padding-box,
+      linear-gradient( #25C1B3, #3372FF) border-box;
+  }
+
+  /* Disabled state (MUI-specific) */
+  .gradientOutlinedButton.Mui-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .DBodals-addNewFolder-icon {
+    width: 3rem;
+    height: 3rem;
     filter: invert(35%) sepia(99%) saturate(2326%) hue-rotate(211deg) brightness(100%) contrast(103%);
   }
-  
-
-  
