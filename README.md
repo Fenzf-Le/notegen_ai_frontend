@@ -36,7 +36,7 @@ A React-based frontend project for an AI-powered note-taking and smart learning 
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/Fenzf-Le/notegen_ai_frontend.git
 cd notegen_ai_frontend
 ```
 
