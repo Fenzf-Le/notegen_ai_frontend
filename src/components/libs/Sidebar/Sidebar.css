@@ -4,7 +4,8 @@
     top: 0;
     left: 0;
     height: 97vh;
-    min-width: 236px;
+    width: 100%;
+    max-width: 236px;
     background-color: var(--light);
     color: var(--dark-3);
     display: flex;
@@ -13,12 +14,13 @@
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     border: 1px solid var(--lightBorder);
-    transition: min-width 0.4s ease;
+    transition: max-width 0.4s ease;
     margin: 0 0.6rem; /* Apply the global margin */
   }
   
   .sidebar.collapsed {
-    min-width: 80px;
+    width: 100%;
+    max-width: 80px;
   }
 
   /* Logo */
