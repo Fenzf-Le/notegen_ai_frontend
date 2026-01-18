@@ -81,6 +81,7 @@ export default function SignIn({ setAuthenticated, setUser, toggleSignUp }) {
       setUser(result.user);
       setAuthenticated(true);
       localStorage.setItem('user', JSON.stringify(result.user));
+      navigate(PATH_NAME.DASHBOARD);
     } catch (error) {
       console.error("Login failed:", error);
     } finally {

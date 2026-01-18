@@ -2,6 +2,7 @@ import { PATH_NAME } from "./Pathname";
 import SignUp from "../components/pages/SignUp/SignUp";
 import SignIn from "../components/pages/SignIn/SignIn";
 import StartPage from "../components/pages/StartPage/StartPage";
+import NotFound from "../components/pages/NotFound/NotFound";
 import Dashboard from "../components/pages/Dashboard/Dashboard";
 import NoteGallery from "../components/pages/NoteGallery/NoteGallery";
 import SmartLearning from "../components/pages/SmartLearning/SmartLearning";
@@ -19,6 +20,7 @@ export const publicRoutes = [
     { path: PATH_NAME.SIGNUP, element: <SignUp /> },
     { path: PATH_NAME.SIGNIN, element: <SignIn /> },
     { path: PATH_NAME.STARTPAGE, element: <StartPage /> },
+    { path: PATH_NAME.NOTFOUND, element: <NotFound /> },
 ];
 
 export const privateRoutes = [

@@ -7,10 +7,12 @@ import './font.css'
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { privateRoutes, adminRoutes } from './router/routerConfig'
+import { privateRoutes, adminRoutes } from './router/routerConfig';
+import { PATH_NAME } from './router/Pathname'
 import SignUp from './components/pages/SignUp/SignUp';
 import SignIn from './components/pages/SignIn/SignIn';
 import StartPage from './components/pages/StartPage/StartPage';
+import NotFound from './components/pages/NotFound/NotFound';
 import MainPage from './components/pages/MainPage/MainPage';
 import Information from './components/pages/Information/Information'
 import AdminPage from './components/pages/AdminPage/AdminPage';
@@ -46,7 +48,8 @@ function App() {
     const storedToken = localStorage.getItem("access_token");
     const storedUser = localStorage.getItem("user");
 
-    if (storedToken && storedUser) {
+    // if (storedToken && storedUser) {
+    if (storedUser) {
       try {
         setAuthenticated(true);
         setUser(JSON.parse(storedUser));
@@ -124,12 +127,21 @@ function App() {
               {/* <Route element={
                 user?.isAdmin ? <AdminPage setAuthenticated={setAuthenticated} /> : <Navigate to="/" />
               }> */}
-              <Route element={<AdminPage user={user.isAdmin} setAuthenticated={setAuthenticated} />
-              }>
+              <Route
+                element={
+                  user?.isAdmin ? (
+                    <AdminPage setAuthenticated={setAuthenticated} />
+                  ) : (
+                    <Navigate to={PATH_NAME.NOTFOUND} replace />
+                  )
+                }
+              >
                 {adminRoutes.map(route => (
                   <Route key={route.path} path={route.path} element={route.element} />
                 ))}
               </Route>
+
+              <Route path={PATH_NAME.NOTFOUND} element={<NotFound />} />
             </Routes>
           </motion.div>
         )}
