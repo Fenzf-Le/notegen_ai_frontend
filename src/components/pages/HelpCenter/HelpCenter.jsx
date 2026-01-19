@@ -13,6 +13,10 @@ export default function HelpCenter() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const form = useRef();
 
+  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
   const issues = [
     { text: "Slow performance", icon: IssueDetails },
     { text: "Sync errors", icon: IssueDetails },
@@ -25,7 +29,7 @@ export default function HelpCenter() {
 
   const handleIssueClick = (issueText) => {
     let updatedIssues;
-  
+
     if (activeIssues.includes(issueText)) {
       // Remove the issue if it's already selected
       updatedIssues = activeIssues.filter(issue => issue !== issueText);
@@ -33,15 +37,15 @@ export default function HelpCenter() {
       // Add the new issue
       updatedIssues = [...activeIssues, issueText];
     }
-  
+
     setActiveIssues(updatedIssues);
-  
+
     // Format the textarea content with selected issues
     const formattedText = updatedIssues.map(issue => `*${issue}*`).join(" ");
-  
+
     setTextareaValue(formattedText);
-  };  
-  
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,8 +61,8 @@ export default function HelpCenter() {
     // console.log("Subject: Report NoteGen AI issue from user " + name);
     // console.log("Message: " + textareaValue);
     emailjs
-      .sendForm('service_2fhe6nr', 'template_nc42e1f', form.current, {
-        publicKey: 'vSemh7kIXJWAPVyK5',
+      .sendForm(SERVICE_ID, TEMPLATE_ID, form.current, {
+        publicKey: PUBLIC_KEY,
       })
       .then(
         () => {

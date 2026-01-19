@@ -57,6 +57,9 @@ VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
 VITE_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
 VITE_FIREBASE_MESSAGE_SENDER_ID=your_firebase_message_sender_id
 VITE_FIREBASE_APP_ID=your_firebase_app_id
+VITE_EMAILJS_SERVICE_ID=your_service_key
+VITE_EMAILJS_TEMPLATE_ID=your_template_key
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
 ### 4. Development Server
