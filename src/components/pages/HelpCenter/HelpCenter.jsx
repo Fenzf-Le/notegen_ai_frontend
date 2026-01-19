@@ -18,7 +18,7 @@ export default function HelpCenter() {
   const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
   const issues = [
-    { text: "Slow performance", icon: IssueDetails },
+    { text: "Slow performance", icon: IssueDetails }, 
     { text: "Sync errors", icon: IssueDetails },
     { text: "Forgot password", icon: IssueDetails },
     { text: "Data loss", icon: IssueDetails },

@@ -219,4 +219,4 @@ MIT © Notegen AI Team
 ---
 
 **Last Updated:** January 2026  
-**Version:** 1.2.0
+**Version:** 1.2.1
